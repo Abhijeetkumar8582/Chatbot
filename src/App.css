@@ -1,0 +1,157 @@
+.Container {
+  padding: 3rem 5rem;
+}
+.Chatbot_main_BOX {
+  border: 1px solid;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 60px 400px 50px 70px;
+}
+.head_section_innerSection {
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.head_section_image_Section {
+  width: 5%;
+  margin: 10px;
+}
+.head_section_content_Section {
+  width: 95%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+.input_Inner_section {
+  background-color: #bababa;
+  padding: 1rem;
+  display: flex;
+  color: steelblue;
+  justify-content: center;
+  align-items: center;
+}
+.input_Inner_section_button {
+  background: transparent;
+  border: none;
+}
+.input_Inner_section_button:focus {
+  outline: none;
+}
+.preview_section {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
+  width: 600px;
+}
+
+.loader-inner {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+}
+
+.box {
+  width: 5px;
+  height: 5px;
+  background-color: black;
+  animation: spin 0.5s linear infinite alternate-reverse;
+  border-radius: 10px;
+}
+
+.a {
+  animation-delay: 0;
+}
+
+.b {
+  animation-delay: 0.25s;
+}
+
+.c {
+  animation-delay: 0.5s;
+}
+
+.d {
+  animation-delay: 0.75s;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(0, 15px);
+    height: 10px;
+  }
+
+  100% {
+    transform: translate(0, 0px);
+    height: 40px;
+  }
+}
+.body_section {
+  background-color: aliceblue;
+  overflow: scroll;
+}
+.GPT_response_Main_Div{
+  display: flex;
+  width: 100%;
+}
+.GPT_response_Blank_div{
+  width: 50%;
+}
+.GPT_response_div {
+  background: darkseagreen;
+  width: 50%;
+  font-family: monospace;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.user_response_Main_div {
+  display: flex;
+  width: 100%;
+}
+.user_response_first_div {
+  width: 50%;
+}
+.user_response_div {
+  background: cadetblue;
+  width: 50%;
+  border-radius: 5px;
+  font-family: monospace;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+@media only screen and (max-width: 769px) {
+  .Container {
+    padding: 1rem;
+  }
+  .GPT_response_div {
+    width: 80%;
+    margin: 10px 20px;
+  }
+  .user_response_first_div {
+    width: 80%;
+
+  }
+ .GPT_response_Blank_div,
+ .user_response_first_div{
+  display: none;
+ }
+ .user_response_div{
+  width: 100%;
+  margin:10px 20px;
+ }
+ .Chatbot_main_BOX {
+  border: 1px solid;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 60px 450px 50px 70px;
+}
+}
