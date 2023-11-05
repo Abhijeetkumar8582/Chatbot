@@ -66,7 +66,8 @@ function Chatbot() {
     
 
     const GPTFunction = () => {
-        const apiKey = "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";
+        
+        const apiKey = "add_api_key"
         console.log(process.env.OPEN_API)
         const apiUrl = "https://api.openai.com/v1/chat/completions";
         const requestData = {
