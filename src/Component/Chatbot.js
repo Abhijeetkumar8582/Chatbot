@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Avatar from '@mui/material/Avatar';
 import MicIcon from '@mui/icons-material/Mic';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
@@ -20,12 +20,12 @@ function Chatbot() {
     const msg = new SpeechSynthesisUtterance()
     msg.text = "Hello World"
     useEffect(() => {
-      
+
         bodySectionRef.current.scrollTop = bodySectionRef.current.scrollHeight;
-      }, [conversationChat]);
-    
+    }, [conversationChat]);
+
     useEffect(() => {
-        if ( VoiceGenerated) {
+        if (VoiceGenerated) {
             const utterance = new SpeechSynthesisUtterance(VoiceGenerated);
             window.speechSynthesis.speak(utterance);
         }
@@ -40,6 +40,12 @@ function Chatbot() {
         setBoxes(boxesArray);
     }, []);
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
+    
+    useEffect(() => {
+        if (IsInputOpen && !listening) {
+            stopListen()
+        }
+    }, [listening])
     if (!browserSupportsSpeechRecognition) {
         return <span>Browser doesn't support speech recognition.</span>;
     }
@@ -53,22 +59,22 @@ function Chatbot() {
         SpeechRecognition.stopListening();
         setuserInputArray((prevUserInputArray) => [...prevUserInputArray, transcript]);
         setConversationChat((prevConversationChat) => [
-          ...prevConversationChat,
-          {
-            role: 'user',
-            message: transcript,
-          }
+            ...prevConversationChat,
+            {
+                role: 'user',
+                message: transcript,
+            }
         ]);
         GPTFunction();
         bodySectionRef.current.scrollTop = bodySectionRef.current.scrollHeight;
 
-      }
-    
+    }
+
 
     const GPTFunction = () => {
-        
-        const apiKey = "add_api_key"
-        console.log(process.env.OPEN_API)
+
+        const apiKey = "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"
+       
         const apiUrl = "https://api.openai.com/v1/chat/completions";
         const requestData = {
             model: "gpt-3.5-turbo",
@@ -77,7 +83,7 @@ function Chatbot() {
                 { role: "user", content: transcript },
             ],
         };
-       
+
 
         fetch(apiUrl, {
             method: "POST",
@@ -119,15 +125,15 @@ function Chatbot() {
                         </div>
                     </div>
                 </div>
-                <div className='body_section'  ref={bodySectionRef}>
+                <div className='body_section' ref={bodySectionRef}>
                     {conversationChat.map((element, i) => (
                         <div key={i} className={element.role === 'bot' ? 'GPT_response_Main_Div' : 'user_response_Main_div'}>
                             {element.role === 'bot' ? (
                                 <div className='GPT_response_Main_Div'>
-                                <div className='GPT_response_div'>
-                                    <p>{element.message}</p>
-                                </div>
-                                <div className='GPT_response_Blank_div'></div>
+                                    <div className='GPT_response_div'>
+                                        <p>{element.message}</p>
+                                    </div>
+                                    <div className='GPT_response_Blank_div'></div>
                                 </div>
                             ) : (
                                 <div className='user_response_Main_div'>
